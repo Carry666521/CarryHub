@@ -13,6 +13,8 @@ COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/package*.json ./
 COPY --from=builder /app/next.config.mjs ./
+COPY --from=builder /app/.next /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 RUN npm install --production
 
 EXPOSE 3000
